@@ -1,10 +1,10 @@
 package Backend;
 
-import Assemb.LFn;
-import Assemb.LIRBlock;
-import Assemb.LOperand.*;
-import Assemb.LRoot;
-import Assemb.RISCInst.*;
+import Assembly.LFn;
+import Assembly.LIRBlock;
+import Assembly.LOperand.*;
+import Assembly.LRoot;
+import Assembly.RISCInst.*;
 import MIR.Function;
 import MIR.IRBlock;
 import MIR.IRinst.*;
@@ -13,16 +13,15 @@ import MIR.IRtype.ClassType;
 import MIR.IRtype.IRBaseType;
 import MIR.IRtype.Pointer;
 import MIR.Root;
-//import Optim.LoopDetector;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import static Assemb.RISCInst.RISCInst.CalCategory;
-import static Assemb.RISCInst.RISCInst.CalCategory.*;
-import static Assemb.RISCInst.RISCInst.EzCategory.eq;
-import static Assemb.RISCInst.RISCInst.EzCategory.ne;
+import static Assembly.RISCInst.RISCInst.CalCategory;
+import static Assembly.RISCInst.RISCInst.CalCategory.*;
+import static Assembly.RISCInst.RISCInst.EzCategory.eq;
+import static Assembly.RISCInst.RISCInst.EzCategory.ne;
 
 public class InstSelector {
 

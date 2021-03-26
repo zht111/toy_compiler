@@ -1,4 +1,4 @@
-package Assemb.LOperand;
+package Assembly.LOperand;
 
 public class Relocation extends Imm {
     private GReg relocated;

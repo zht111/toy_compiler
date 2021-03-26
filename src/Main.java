@@ -2,7 +2,7 @@ import AST.RootNode;
 import Backend.*;
 import Frontend.*;
 import MIR.*;
-import Assemb.*;
+import Assembly.*;
 import Parser.MxLexer;
 import Parser.MxParser;
 import Util.MxErrorListener;

@@ -1,4 +1,4 @@
-package Assemb.LOperand;
+package Assembly.LOperand;
 
 public abstract class LOperand {
 

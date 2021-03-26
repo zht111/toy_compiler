@@ -1,6 +1,5 @@
-package Assemb.LOperand;
+package Assembly.LOperand;
 
-//GReg is actually a pointer pointing to data whose size is "int size"
 public class GReg extends Reg {
 
     private int size;

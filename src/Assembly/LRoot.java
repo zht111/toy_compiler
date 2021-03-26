@@ -1,8 +1,8 @@
-package Assemb;
+package Assembly;
 
-import Assemb.LOperand.GReg;
-import Assemb.LOperand.PhyReg;
-import Assemb.LOperand.Reg;
+import Assembly.LOperand.GReg;
+import Assembly.LOperand.PhyReg;
+import Assembly.LOperand.Reg;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,6 +1,6 @@
-package Assemb.LOperand;
+package Assembly.LOperand;
 
-import Assemb.RISCInst.Mv;
+import Assembly.RISCInst.Mv;
 
 import java.util.HashSet;
 

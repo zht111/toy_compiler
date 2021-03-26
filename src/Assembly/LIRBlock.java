@@ -1,7 +1,7 @@
-package Assemb;
+package Assembly;
 
-import Assemb.LOperand.Reg;
-import Assemb.RISCInst.RISCInst;
+import Assembly.LOperand.Reg;
+import Assembly.RISCInst.RISCInst;
 
 import java.util.ArrayList;
 import java.util.HashSet;

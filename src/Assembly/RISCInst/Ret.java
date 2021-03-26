@@ -1,8 +1,8 @@
-package Assemb.RISCInst;
+package Assembly.RISCInst;
 
-import Assemb.LIRBlock;
-import Assemb.LOperand.Reg;
-import Assemb.LRoot;
+import Assembly.LIRBlock;
+import Assembly.LOperand.Reg;
+import Assembly.LRoot;
 
 import java.util.Collections;
 import java.util.HashSet;

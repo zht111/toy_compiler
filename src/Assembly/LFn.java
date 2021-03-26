@@ -1,6 +1,6 @@
-package Assemb;
+package Assembly;
 
-import Assemb.LOperand.Reg;
+import Assembly.LOperand.Reg;
 
 import java.util.ArrayList;
 import java.util.HashSet;

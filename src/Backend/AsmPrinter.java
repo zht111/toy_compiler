@@ -1,10 +1,10 @@
 package Backend;
 
-import Assemb.LFn;
-import Assemb.LIRBlock;
-import Assemb.LOperand.GReg;
-import Assemb.LRoot;
-import Assemb.RISCInst.RISCInst;
+import Assembly.LFn;
+import Assembly.LIRBlock;
+import Assembly.LOperand.GReg;
+import Assembly.LRoot;
+import Assembly.RISCInst.RISCInst;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
