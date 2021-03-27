@@ -1,5 +1,3 @@
+set ff=UNIX
 set -e
-cd "$(dirname "$0")"
-export CCHK="java -classpath /ulib/java/antlr-4.9.1-complete.jar:./bin: Main > output.s"
-cat > test.mx
-$CCHK
+cat | java -cp /ulib/java/antlr-4.9.1-complete.jar:./bin Main -codegen > output.s

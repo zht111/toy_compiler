@@ -17,48 +17,48 @@ import java.io.InputStream;
 import java.io.PrintStream;
 
 public class Main {
-    public static void main(String[] args) throws Exception{
+	public static void main(String[] args) throws Exception{
 
 		boolean SemanticOnly = false, emitLLVM = false;
-        int optLevel = 0;
+		int optLevel = 0;
 		
-        if(args.length > 0) {
-            for (String arg : args) {
-                switch (arg) {
-                    case "-O0": optLevel = 0;break;
+		if(args.length > 0) {
+			for (String arg : args) {
+				switch (arg) {
+					case "-O0": optLevel = 0;break;
 					case "-O1": optLevel = 1;break;
 					case "-O2": optLevel = 2;break;
-                    case "-semantic": SemanticOnly = true;break;
-                    case "-ll": emitLLVM = true;break;
-                    default: break;
-                }
-            }
-        }
+					case "-semantic": SemanticOnly = true;break;
+					case "-ll": emitLLVM = true;break;
+					default: break;
+				}
+			}
+		}
 		
-        String name = "test.mx";
-        //InputStream input = new FileInputStream(name);
+		String name = "test.mx";
+		//InputStream input = new FileInputStream(name);
 		//String userdir=System.getProperty("user.dir");
 		//PrintStream output = new PrintStream(userdir.substring(0,userdir.length()-3)  + "output.s");
 		InputStream input = System.in;
 		PrintStream output = System.out;
 
-        try {
-            RootNode ASTRoot;
-            globalScope gScope = new globalScope(null);
+		try {
+			RootNode ASTRoot;
+			globalScope gScope = new globalScope(null);
 
-            MxLexer lexer = new MxLexer(CharStreams.fromStream(input));
-            lexer.removeErrorListeners();
-            lexer.addErrorListener(new MxErrorListener());
-            MxParser parser = new MxParser(new CommonTokenStream(lexer));
-            parser.removeErrorListeners();
-            parser.addErrorListener(new MxErrorListener());
-            ParseTree parseTreeRoot = parser.program();
-            ASTBuilder astBuilder = new ASTBuilder(gScope);
-            ASTRoot = (RootNode)astBuilder.visit(parseTreeRoot);
+			MxLexer lexer = new MxLexer(CharStreams.fromStream(input));
+			lexer.removeErrorListeners();
+			lexer.addErrorListener(new MxErrorListener());
+			MxParser parser = new MxParser(new CommonTokenStream(lexer));
+			parser.removeErrorListeners();
+			parser.addErrorListener(new MxErrorListener());
+			ParseTree parseTreeRoot = parser.program();
+			ASTBuilder astBuilder = new ASTBuilder(gScope);
+			ASTRoot = (RootNode)astBuilder.visit(parseTreeRoot);
 			Root f = new Root();
-            new SymbolCollector(gScope, f).visit(ASTRoot);			
+			new SymbolCollector(gScope, f).visit(ASTRoot);			
 			new TypeFilter(gScope).visit(ASTRoot);			
-            new SemanticChecker(gScope, f).visit(ASTRoot);
+			new SemanticChecker(gScope, f).visit(ASTRoot);
 
 			if(SemanticOnly) return;
 					
@@ -72,9 +72,9 @@ public class Main {
 			
 			new AsmPrinter(lRoot, output, true).run();
 		
-        } catch (error er) {
-            System.err.println(er.toString());
-            throw new RuntimeException();
-        }
-    }
+		} catch (error er) {
+			System.err.println(er.toString());
+			throw new RuntimeException();
+		}
+	}
 }
