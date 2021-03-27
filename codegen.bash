@@ -1,2 +1,3 @@
+set ff=unix
 set -e
-java -cp /ulib/java/antlr-4.9.1-complete.jar:./bin Main
+cat | java -cp /ulib/java/antlr-4.9.1-complete.jar:./bin Main > output.s

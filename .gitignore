@@ -4,3 +4,4 @@ output.s
 *.log
 *.bat
 *.exe
+*.iml
