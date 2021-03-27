@@ -35,12 +35,12 @@ public class Main {
 			}
 		}
 		
-		String name = "test.mx";
+		//String name = "test.mx";
 		//InputStream input = new FileInputStream(name);
 		//String userdir=System.getProperty("user.dir");
 		//PrintStream output = new PrintStream(userdir.substring(0,userdir.length()-3)  + "output.s");
 		InputStream input = System.in;
-		PrintStream output = System.out;
+		PrintStream output = new PrintStream("output.s");
 
 		try {
 			RootNode ASTRoot;
