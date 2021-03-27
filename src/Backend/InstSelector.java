@@ -39,16 +39,15 @@ public class InstSelector {
     public InstSelector(Root irRoot) {
         this.irRoot = irRoot;
     }
-	
+/*	
 	private Reg RegM2L(Operand src) {
 System.err.println("reg M to L:" + src.toString());		
 			Reg ret=RegM2L_(src);
 System.err.println("	" + ret.toString());			
 			return ret;
 	}
-	
-	
-    private Reg RegM2L_(Operand src) {
+*/		
+    private Reg RegM2L(Operand src) {
 	
         LIRBlock block = currentBlock;
         if (src instanceof Register || src instanceof Param) {

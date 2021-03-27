@@ -33,9 +33,9 @@ public class LRoot {
                 case 2: calleeSaveRegs.add(phyRegs.get(i));break;
             }
         }
-        assignableRegs.addAll(callerSaveRegs);
+//        assignableRegs.addAll(callerSaveRegs);
         assignableRegs.addAll(calleeSaveRegs);
-        assignableRegs.remove(0);
+//        assignableRegs.remove(0);
         assignableRegs.add(phyRegs.get(1)); //let ra be the last to assign
     }
 
