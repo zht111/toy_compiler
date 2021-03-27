@@ -37,8 +37,9 @@ public class Main {
 		
         String name = "test.mx";
         InputStream input = new FileInputStream(name);
-		String userdir=System.getProperty("user.dir");
-		PrintStream output = new PrintStream(userdir.substring(0,userdir.length()-3)  + "output.s");
+		//String userdir=System.getProperty("user.dir");
+		//PrintStream output = new PrintStream(userdir.substring(0,userdir.length()-3)  + "output.s");
+		PrintStream output = System.out;
 
         try {
             RootNode ASTRoot;
