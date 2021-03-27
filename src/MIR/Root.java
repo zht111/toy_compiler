@@ -97,14 +97,12 @@ public class Root {
         malloc.setRetType(stringT);
         malloc.addParam(new Param(i32T, "a"));
         malloc.setSideEffect(false);
-        builtinFunctions.put("malloc", malloc);
-/*		
+        builtinFunctions.put("malloc", malloc);		
         Function init = new Function("__init");
         init.setSideEffect(true);
         init.setExitBlock(init.entryBlock());
         init.setRetType(new VoidType());
         functions.put("__init", init);
-*/
     }
 
     public HashMap<String, ClassType> types() {
@@ -167,8 +165,6 @@ public class Root {
             IRBaseType tmp = getIRType(type.baseType(), isMemSet);
             for (int i = 0; i < type.dim();++i)
                 tmp = new Pointer(tmp, false);
-            //consider int[][] t; t(int***) is resolvable, but of course the value(int**) of t is not.
-            //consider int[][] f(); it returns int**, so not resolvable.
             return tmp;
         }
         else if (type.isInt()) return Root.i32T;

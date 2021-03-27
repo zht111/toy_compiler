@@ -1,7 +1,6 @@
 test.mx
 output.s
+terminal.exe
 *.class
 *.log
 *.bat
-*.exe
-*.iml
