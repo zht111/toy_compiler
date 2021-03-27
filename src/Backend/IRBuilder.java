@@ -48,7 +48,7 @@ public class IRBuilder implements ASTVisitor {
 
     private void setBuiltinMethod(String name) {
         gScope.getMethod(name, beginning, false)
-                .setFunction(irRoot.getBuiltinFunction("g_" + name));
+                .setFunction(irRoot.getBuiltinFunction("builtin_" + name));
     }
     private String getName(Operand src) {
         if (src instanceof Param) return ((Param) src).name();
@@ -542,40 +542,40 @@ public class IRBuilder implements ASTVisitor {
             case Minus : binaryOp = sub;break;
             case Plus : {
                 if (it.src1().type().isInt()) binaryOp = add;
-                else stringCall = irRoot.getBuiltinFunction("g_stringAdd");
+                else stringCall = irRoot.getBuiltinFunction("builtin_stringAdd");
                 break;
             }
             case Less : {
                 if (it.src1().type().isInt()) cmpOp = slt;
-                else stringCall = irRoot.getBuiltinFunction("g_stringLT");
+                else stringCall = irRoot.getBuiltinFunction("builtin_stringLT");
                 break;
             }
             case Greater: {
                 if (it.src1().type().isInt()) cmpOp = sgt;
-                else stringCall = irRoot.getBuiltinFunction("g_stringGT");
+                else stringCall = irRoot.getBuiltinFunction("builtin_stringGT");
                 break;
             }
             case LessEqual: {
                 if (it.src1().type().isInt()) cmpOp = sle;
-                else stringCall = irRoot.getBuiltinFunction("g_stringLE");
+                else stringCall = irRoot.getBuiltinFunction("builtin_stringLE");
                 break;
             }
             case GreaterEqual: {
                 if (it.src1().type().isInt()) cmpOp = sge;
-                else stringCall = irRoot.getBuiltinFunction("g_stringGE");
+                else stringCall = irRoot.getBuiltinFunction("builtin_stringGE");
                 break;
             }
             case AndAnd :
             case OrOr: break;
             case Equal: {
                 if (it.src1().type().sameType(gScope.getStringType()))
-                    stringCall = irRoot.getBuiltinFunction("g_stringEQ");
+                    stringCall = irRoot.getBuiltinFunction("builtin_stringEQ");
                 else cmpOp = eq;
                 break;
             }
             case NotEqual: {
                 if (it.src1().type().sameType(gScope.getStringType()))
-                    stringCall = irRoot.getBuiltinFunction("g_stringNE");
+                    stringCall = irRoot.getBuiltinFunction("builtin_stringNE");
                 else cmpOp = ne;
                 break;
             }

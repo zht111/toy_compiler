@@ -3,3 +3,4 @@ output.s
 *.class
 *.log
 *.bat
+*.exe
