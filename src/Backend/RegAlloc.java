@@ -121,11 +121,11 @@ System.err.println("notice: " + inst.toString() +"\n\n");
 									}
 								}
 								vregs.offer(reg);	
-								if(inst.isF == 0 ){//&& reg.isP == 0
-								RISCInst _tmp = new Ld(root.getPhyReg(2), reg, reg.stackOffset, ((VirtualReg)reg).size(), block);
-								_tmp.isF = 1;
-								inst.addPre(_tmp);
-								System.err.println("load: " + inst.toString());
+								if(inst.isF == 0 ){
+									RISCInst _tmp = new Ld(root.getPhyReg(2), reg, reg.stackOffset, ((VirtualReg)reg).size(), block);
+									_tmp.isF = 1;
+									inst.addPre(_tmp);
+									System.err.println("load: " + inst.toString());
 								}
 
 							}
