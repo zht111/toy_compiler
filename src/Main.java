@@ -29,7 +29,7 @@ public class Main {
 				}
 			}
 		}	
-		//String name = "test.mx";
+		String name = "test.mx";
 		//InputStream input = new FileInputStream(name);
 		//PrintStream output = new PrintStream("output.s");
 		InputStream input = System.in;
