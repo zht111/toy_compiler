@@ -109,7 +109,7 @@ System.err.println("notice: " + inst.toString() +"\n\n");
 //System.err.println("dest:" + inst.dest().toString() + " inst: " + inst.toString());
 								inst.replaceBy(replace); inst = replace;
 							} else {								
-//								if(reg.isP == 1)
+								if(reg.isP == 1)
 								{
 									if(inst instanceof St && ((St)inst).address == reg){
 										((St)inst).address = root.getPhyReg(2);
@@ -121,7 +121,7 @@ System.err.println("notice: " + inst.toString() +"\n\n");
 									}
 								}
 								vregs.offer(reg);	
-								if(inst.isF == 0){//&& reg.isP == 0
+								if(inst.isF == 0 && reg.isP == 0){//
 								RISCInst _tmp = new Ld(root.getPhyReg(2), reg, reg.stackOffset, ((VirtualReg)reg).size(), block);
 								_tmp.isF = 1;
 								inst.addPre(_tmp);
