@@ -39,22 +39,22 @@ public class InstSelector {
     public InstSelector(Root irRoot) {
         this.irRoot = irRoot;
     }
-/*	
-	private Reg RegM2L(Operand src) {
-System.err.println("reg M to L:" + src.toString());		
+
+	private Reg RegM2L(Operand src) {	
 			Reg ret=RegM2L_(src);
+System.err.print(src.toString());				
 System.err.println("	" + ret.toString());			
 			return ret;
 	}
-*/		
-    private Reg RegM2L(Operand src) {
+		
+    private Reg RegM2L_(Operand src) {
 	
         LIRBlock block = currentBlock;
         if (src instanceof Register || src instanceof Param) {
 
 int _isP = 0;
 if(src.type() instanceof Pointer){
-System.err.println("pointer:" + src.toString());
+//System.err.println("pointer:" + src.toString());
 _isP = 1;
 }	
 			
@@ -182,6 +182,9 @@ _tmp.isP = _isP;
         currentBlock.addInst(new RType(RegM2L(src1), RegM2L(src2), slt, dest, currentBlock));
     }
     private void genLIR(Inst inst) {
+		
+System.err.println("> " + inst.toString());
+		
         LIRBlock block = currentBlock;
         if (inst instanceof Binary) {
             Binary bi = (Binary) inst;
@@ -386,6 +389,7 @@ _tmp.isP = _isP;
             if (reg instanceof GReg) block.addInst(new La((GReg) reg, RegM2L(inst.dest()), block));
             else block.addInst(new Mv(reg, RegM2L(inst.dest()), block));
         }
+block.showlast();
     }
 
     private void copyBlock(IRBlock origin, LIRBlock block) {

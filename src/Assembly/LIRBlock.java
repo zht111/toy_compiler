@@ -30,6 +30,12 @@ public class LIRBlock {
         }
         tail = inst;
     }
+	
+	public void showlast() {
+		if(tail != null){
+			System.err.println(">> " + tail.toString());
+		}
+	}
 
     @Override
     public String toString() {
