@@ -144,7 +144,6 @@ System.err.println("notice: " + inst.toString() +"\n\n");
 								
 								vregs.offer(def);
 								if(inst.isF == 0){
-									assert def.isP == 0;
 									RISCInst _tmp = new St(root.getPhyReg(2), def, def.stackOffset, ((VirtualReg)def).size(), block);
 									_tmp.isF = 1;
 									inst.addPost(_tmp);
