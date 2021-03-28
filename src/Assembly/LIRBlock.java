@@ -29,6 +29,7 @@ public class LIRBlock {
             inst.previous = tail;
         }
         tail = inst;
+		showlast();
     }
 	
 	public void showlast() {
