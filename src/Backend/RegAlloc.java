@@ -100,18 +100,17 @@ public class RegAlloc {
 					if (reg.stackOffset != null) {
 	
 						if (inst.defs().contains(reg)) {					
-							assert reg.isP == 0;
+System.err.println("notice: " + inst.toString() +"\n\n");
 							vregs.offer(reg);	
 						}
 						else {
 							if (inst instanceof Mv && ((Mv)inst).origin() == reg && inst.dest().stackOffset == null) {//safe for only one reg
 								RISCInst replace = new Ld(root.getPhyReg(2), inst.dest(), reg.stackOffset, ((VirtualReg)reg).size(), block);
 //System.err.println("dest:" + inst.dest().toString() + " inst: " + inst.toString());
-								inst.replaceBy(replace);
-								inst = replace;
-							} else {
-								
-								if(reg.isP == 1){
+								inst.replaceBy(replace); inst = replace;
+							} else {								
+//								if(reg.isP == 1)
+								{
 									if(inst instanceof St && ((St)inst).address == reg){
 										((St)inst).address = root.getPhyReg(2);
 										((St)inst).offset = reg.stackOffset;
@@ -122,12 +121,11 @@ public class RegAlloc {
 									}
 								}
 								vregs.offer(reg);	
-								if(inst.isF == 0 && reg.isP == 0){
+								if(inst.isF == 0){//&& reg.isP == 0
 								RISCInst _tmp = new Ld(root.getPhyReg(2), reg, reg.stackOffset, ((VirtualReg)reg).size(), block);
 								_tmp.isF = 1;
 								inst.addPre(_tmp);
-								System.err.print("load: ");
-								System.err.println(inst.toString());	
+								System.err.println("load: " + inst.toString());
 								}
 
 							}
@@ -140,8 +138,7 @@ public class RegAlloc {
 							if (inst instanceof Mv && ((Mv) inst).origin().stackOffset == null){
 								RISCInst replace = new St(root.getPhyReg(2), ((Mv) inst).origin(), def.stackOffset, ((VirtualReg)def).size(), block);
 //System.err.println("origin:" + ((Mv) inst).origin().toString() + " inst: " + ((Mv) inst).toString());
-								inst.replaceBy(replace);
-								inst = replace;
+								inst.replaceBy(replace); inst = replace;
 							}
 							else {
 								
@@ -151,8 +148,7 @@ public class RegAlloc {
 									RISCInst _tmp = new St(root.getPhyReg(2), def, def.stackOffset, ((VirtualReg)def).size(), block);
 									_tmp.isF = 1;
 									inst.addPost(_tmp);
-									System.err.print("store: ");
-									System.err.println(inst.toString());	
+									System.err.println("store: " + inst.toString());	
 								}
 
 						   }

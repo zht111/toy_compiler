@@ -54,7 +54,7 @@ System.err.println("	" + ret.toString());
 
 int _isP = 0;
 if(src.type() instanceof Pointer){
-//System.err.println("pointer:" + src.toString());
+System.err.println("pointer:" + src.toString());
 _isP = 1;
 }	
 			
@@ -182,9 +182,7 @@ _tmp.isP = _isP;
         currentBlock.addInst(new RType(RegM2L(src1), RegM2L(src2), slt, dest, currentBlock));
     }
     private void genLIR(Inst inst) {
-		
 System.err.println("> " + inst.toString());
-		
         LIRBlock block = currentBlock;
         if (inst instanceof Binary) {
             Binary bi = (Binary) inst;
@@ -389,7 +387,6 @@ System.err.println("> " + inst.toString());
             if (reg instanceof GReg) block.addInst(new La((GReg) reg, RegM2L(inst.dest()), block));
             else block.addInst(new Mv(reg, RegM2L(inst.dest()), block));
         }
-block.showlast();
     }
 
     private void copyBlock(IRBlock origin, LIRBlock block) {
