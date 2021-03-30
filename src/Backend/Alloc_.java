@@ -122,7 +122,7 @@ public class Alloc_{
 							} else currentBlock = currentBlock.iDom();
 					}
 					replaceMap.put(reg, finalReplace(replaceMap, replace));
-//					load.removeSelf(true);
+					load.removeSelf(true);
 				});
 			}
 		});

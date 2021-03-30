@@ -61,15 +61,10 @@ _isP = 1;
             if (!regMap.containsKey(src))
 			{
 
-				VirtualReg _tmp = new VirtualReg(src.type().size() / 8, cnt++);
-				
-//System.err.println("[]regMap push:" + src.toString() + " " + _tmp.toString());			
-				_tmp.isP = _isP;
-				
+				VirtualReg _tmp = new VirtualReg(src.type().size() / 8, cnt++);		
+				_tmp.isP = _isP;		
 				regMap.put(src,_tmp);
 			}
-//else {VirtualReg _tmp = (VirtualReg)regMap.get(src);_tmp.isP = _isP;regMap.replace(src,_tmp);}
-//System.err.println("[1]regMap get:" + src.toString() + " " + regMap.get(src).toString());	
             return regMap.get(src);
         } else if (src instanceof GlobalReg || src instanceof ConstString) {
             if (!regMap.containsKey(src)) {
@@ -80,8 +75,6 @@ _isP = 1;
                 if (src instanceof GlobalReg) name = ((GlobalReg)src).name();
                 else name = "." + ((ConstString)src).name;
                 GReg reg = new GReg(size / 8, name);
-				
-//System.err.println("[0]regMap push:" + src.toString() + " " + reg.toString());	
 
                 regMap.put(src, reg);
                 if (src instanceof ConstString) lRoot.addString(reg, ((ConstString)src).value());
@@ -462,7 +455,6 @@ System.err.println("> " + inst.toString());
                 LIRBlock lBlock = new LIRBlock(block.loopDepth, "." + fn.name() + "_" + block.name());
                 blockMap.put(block, lBlock);
             });
-            //this is for reg alloc
             LFn lFn = new LFn(name, blockMap.get(fn.entryBlock()), blockMap.get(fn.exitBlock()));
             fnMap.put(fn, lFn);
             fn.params().forEach(para -> lFn.addPara(RegM2L(para)));
