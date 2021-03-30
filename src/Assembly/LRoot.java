@@ -16,9 +16,7 @@ public class LRoot {
 			"s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "t3", "t4", "t5", "t6"));
 	private static ArrayList<Integer> saveStatus = new ArrayList<>(Arrays.asList(
 //			0, 1, 0, 0, 0, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1 ,1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1));
-			0, 1, 0, 0, 0, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1 ,1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2));
-	//	   0,ra,sp,gp,tp,t0,t1-2 ,s0,s1,a0-1 ,a2-7			 ,s2-11						,t3-6
-	//	  sp is specially considered here: it is unable to be used by others
+			0, 1, 0, 0, 0, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1 ,1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1));
 	private HashSet<LFn> functions = new HashSet<>(), builtinFunctions = new HashSet<>();
 	private ArrayList<PhyReg> phyRegs = new ArrayList<>();
 	private ArrayList<PhyReg> callerSaveRegs = new ArrayList<>(), calleeSaveRegs = new ArrayList<>();

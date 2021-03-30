@@ -52,7 +52,7 @@ public class Main {
 			new SemanticChecker(gScope, f).visit(ASTRoot);
 			if(SemanticOnly) return;		
 			new IRBuilder(gScope, f).visit(ASTRoot);
-			if(emitLLVM) new IRPrinter(System.out, true).run(f);
+			new Alloc_(f).run();
 			new PhiResolve(f).run();
 			if(emitLLVM) new IRPrinter(System.out, true).run(f);
 			LRoot lRoot = new InstSelector(f).run();		

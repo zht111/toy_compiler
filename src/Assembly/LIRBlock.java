@@ -21,7 +21,6 @@ public class LIRBlock {
         this.loopDepth = loopDepth;
         this.name = name;
     }
-
     public void addInst(RISCInst inst) {
         if (head == null) head = inst;
          else {
@@ -29,15 +28,7 @@ public class LIRBlock {
             inst.previous = tail;
         }
         tail = inst;
-		showlast();
     }
-	
-	public void showlast() {
-		if(tail != null){
-			System.err.println(">> " + tail.toString());
-		}
-	}
-
     @Override
     public String toString() {
         return name;
