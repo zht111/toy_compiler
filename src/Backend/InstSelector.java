@@ -54,7 +54,7 @@ System.err.println("	" + ret.toString());
 
 int _isP = 0;
 if(src.type() instanceof Pointer){
-System.err.println("pointer:" + src.toString());
+//System.err.println("pointer:" + src.toString());
 _isP = 1;
 }	
 			
@@ -183,7 +183,7 @@ _isP = 1;
         currentBlock.addInst(new RType(RegM2L(src1), RegM2L(src2), slt, dest, currentBlock));
     }
     private void genLIR(Inst inst) {
-System.err.println("> " + inst.toString());
+//System.err.println("> " + inst.toString());
         LIRBlock block = currentBlock;
         if (inst instanceof Binary) {
             Binary bi = (Binary) inst;
@@ -291,7 +291,6 @@ System.err.println("> " + inst.toString());
         }
         else if (inst instanceof GetElementPtr) {
             GetElementPtr gep = (GetElementPtr) inst;
-            //get the array offset(arrOff * typeSize)
             VirtualReg destMul;
             Reg destIdx = new VirtualReg(4, cnt++);
             int typeSize = gep.type().size() / 8;
@@ -311,7 +310,6 @@ System.err.println("> " + inst.toString());
                         Binary.BinaryOpCat.mul, true);
                 block.addInst(new RType(RegM2L(gep.ptr()), destMul, add, destIdx, block));
             }
-            //get the element offset(eleOff)
             Reg destPtr;
             if (gep.elementOffset() == null) destPtr = destIdx;
             else {
@@ -333,7 +331,7 @@ System.err.println("> " + inst.toString());
 
             if (regMap.containsKey(gep.dest()))
                 block.addInst(new Mv(destPtr, regMap.get(gep.dest()), block));
-            else regMap.put(gep.dest(), destPtr);   //this is good since destPtr must be a useless temp
+            else regMap.put(gep.dest(), destPtr);
         }
         else if (inst instanceof Jump) {
             block.addInst(new Jp(blockMap.get(((Jump) inst).destBlock()), block));

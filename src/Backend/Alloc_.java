@@ -55,7 +55,7 @@ public class Alloc_{
 						HashMap<Register, Operand> blockLiveOut = allocStores.get(inst.block());
 						if (blockLiveOut.containsKey(address)) {
 							replaceMap.put(inst.dest(), blockLiveOut.get(address));
-							inst.removeself(true);
+							inst.removeSelf(true);
 						}
 						else allocLoads.get(inst.block()).add((Load) inst);
 					}
