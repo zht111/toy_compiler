@@ -201,7 +201,7 @@ public class IRBuilder implements ASTVisitor {
 		entryReachable.removeIf(block -> !block.terminated());
 		currentFunction.blocks().addAll(entryReachable);
 		entryReachable = null;returnVisited = null;
-		//new globLoc(irRoot).run();
+		new globLoc(irRoot).run();
 	}
 
 	@Override
