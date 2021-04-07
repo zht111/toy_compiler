@@ -42,8 +42,8 @@ public class InstSelector {
 
 	private Reg RegM2L(Operand src) {	
 			Reg ret=RegM2L_(src);
-System.err.print(src.toString());				
-System.err.println("	" + ret.toString());			
+//System.err.print(src.toString());				
+//System.err.println("	" + ret.toString());			
 			return ret;
 	}
 		
