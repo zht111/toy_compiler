@@ -20,11 +20,10 @@ public class Liveness {
 		HashSet<Reg> uses = new HashSet<>();
 		HashSet<Reg> defs = new HashSet<>();		
 		for (RISCInst inst = block.head; inst != null; inst = inst.next) {
-			
+			defs.addAll(inst.defs());
 			HashSet<Reg> tmp = inst.uses();
 			tmp.removeAll(defs);
-			uses.addAll(tmp);
-			defs.addAll(inst.defs());
+			uses.addAll(tmp);	
 		}
 		Use.put(block, uses);
 		Def.put(block, defs);

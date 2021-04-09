@@ -39,30 +39,14 @@ public class InstSelector {
     public InstSelector(Root irRoot) {
         this.irRoot = irRoot;
     }
-
-	private Reg RegM2L(Operand src) {	
-			Reg ret=RegM2L_(src);
-//System.err.print(src.toString());				
-//System.err.println("	" + ret.toString());			
-			return ret;
-	}
-		
-    private Reg RegM2L_(Operand src) {
+	
+    private Reg RegM2L(Operand src) {
 	
         LIRBlock block = currentBlock;
-        if (src instanceof Register || src instanceof Param) {
-
-int _isP = 0;
-if(src.type() instanceof Pointer){
-//System.err.println("pointer:" + src.toString());
-_isP = 1;
-}	
-			
+        if (src instanceof Register || src instanceof Param) {	
             if (!regMap.containsKey(src))
 			{
-
-				VirtualReg _tmp = new VirtualReg(src.type().size() / 8, cnt++);		
-				_tmp.isP = _isP;		
+				VirtualReg _tmp = new VirtualReg(src.type().size() / 8, cnt++);			
 				regMap.put(src,_tmp);
 			}
             return regMap.get(src);
