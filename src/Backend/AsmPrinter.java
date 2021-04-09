@@ -42,7 +42,7 @@ public class AsmPrinter {
     }
     private HashSet<LIRBlock> visited = new HashSet<>();
     private void runForBlock(LIRBlock block) {
-        if (visited.contains(block)) throw new RuntimeException();
+        if (visited.contains(block))return;// throw new RuntimeException();
         visited.add(block);
         out.println(block.name + ": ");
         for (RISCInst inst = block.head; inst != null; inst = inst.next)

@@ -47,7 +47,7 @@ public class RegAlloc {
 	private Stack<Reg> selectStack = new Stack<>();
 	private int stackLength = 0;
 	private int K;
-	private static int inf = 1000000000;
+	private static int inf = 1100000000;
 
 	public RegAlloc(LRoot root) {
 		this.root = root;
