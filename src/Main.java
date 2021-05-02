@@ -30,10 +30,10 @@ public class Main {
 			}
 		}	
 		String name = "test.mx";
-		//InputStream input = new FileInputStream(name);
-		//PrintStream output = new PrintStream("output.s");
-		InputStream input = System.in;
-		PrintStream output = System.out;
+		InputStream input = new FileInputStream(name);
+		PrintStream output = new PrintStream("output.s");
+		//InputStream input = System.in;
+		//PrintStream output = System.out;
 		try {
 			RootNode ASTRoot;
 			globalScope gScope = new globalScope(null);
