@@ -341,7 +341,7 @@ public class RegAlloc {
 							inst.addPost(new St(root.getPhyReg(2), tmp, reg.stackOffset, tmp.size(), block));
 						}
 						else {
-							if (inst instanceof Mv && ((Mv)inst).origin() == reg && inst.dest().stackOffset == null) {//safe for only one reg
+							if (inst instanceof Mv && ((Mv)inst).origin() == reg && inst.dest().stackOffset == null) {
 								RISCInst replace = new Ld(root.getPhyReg(2), inst.dest(), reg.stackOffset, ((VirtualReg)reg).size(), block);
 								inst.replaceBy(replace);
 								inst = replace;

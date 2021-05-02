@@ -4,10 +4,6 @@ abstract public class Type extends Symbol {
     public enum TypeCategory {
         NULL, BOOL, INT, ARRAY, CLASS, CONSTRUCTOR, VOID, FUNC
     }
-    //the class is a defined class, and the classDef is the type of constructive function
-    //no string because string is a CLASS
-    //FUNC is for expression part M.a in expression M.a(x, y, z);
-
     public abstract int dim();
     public abstract TypeCategory typeCategory();
     public abstract BaseType baseType();

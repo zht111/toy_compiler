@@ -42,7 +42,7 @@ public class AsmPrinter {
     }
     private HashSet<LIRBlock> visited = new HashSet<>();
     private void runForBlock(LIRBlock block) {
-        if (visited.contains(block))return;// throw new RuntimeException();
+        if (visited.contains(block))return;
         visited.add(block);
         out.println(block.name + ": ");
         for (RISCInst inst = block.head; inst != null; inst = inst.next)
@@ -52,7 +52,6 @@ public class AsmPrinter {
     private void runForFn(LFn fn) {
         out.println("\t.globl\t" + fn.name());
         out.println("\t.p2align\t1");
-//        out.println("\t.type\t" + fn.name() +",@function");
         out.println(fn.name() + ":");
         visitList.clear();
         collectWithRename(fn);
@@ -61,22 +60,18 @@ public class AsmPrinter {
         visitList.forEach(block -> {
             if (!visited.contains(block) && !block.hasPrior) runForBlock(block);
         });
-//        out.println("\t.size\t" + fn.name() + ", " + ".-" + fn.name() + "\n");
     }
 
     private void runForGlb(GReg reg) {
-//        out.println("\t.type\t" + reg.name + ",@object");
         out.println("\t.section\t.bss");
         out.println("\t.globl\t" + reg.name);
         out.println("\t.p2align\t2");
         out.println(reg.name + ":");
         out.println(".L" + reg.name + "$local:");
         out.println("\t.word\t0");
-//        out.println("\t.size\t" + reg.name + ", 4\n");
     }
 
     private void runForString(GReg reg, String value) {
-//        out.println("\t.type\t" + reg.name + ",@object");
         out.println("\t.section\t.rodata");
         out.println(reg.name + ":");
         String str = value.replace("\\", "\\\\");
@@ -85,7 +80,6 @@ public class AsmPrinter {
         str = str.replace("\t", "\\t");
         str = str.replace("\"", "\\\"");
         out.println("\t.asciz\t\"" + str + "\"");
-//        out.println("\t.size\t" + reg.name + ", " + value.length() + "\n");
     }
 
     public void run() {

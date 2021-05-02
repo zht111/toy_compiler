@@ -3,7 +3,6 @@ package Util.symbol;
 import Util.error.internalError;
 import Util.position;
 
-//int, bool, void, null
 public class primitiveType extends BaseType {
     private TypeCategory typeCategory;
 

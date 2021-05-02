@@ -22,7 +22,7 @@ public class GetElementPtr extends Inst{
         this.type = type;
         this.ptr = ptr;
         this.arrayOffset = arrayOffset;
-        this.elementOffset = elementOffset; //this can be null
+        this.elementOffset = elementOffset;
         ptr.addUse(this);
         arrayOffset.addUse(this);
         dest.setDef(this);

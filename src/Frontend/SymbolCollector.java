@@ -11,9 +11,6 @@ import Util.globalScope;
 import Util.symbol.classType;
 import Util.symbol.funcDecl;
 
-//to support forwarding reference
-//mention that only function and class support forwarding reference
-//class(types), class methods, functions. (no global variables)
 public class SymbolCollector implements ASTVisitor {
 
     globalScope gScope;

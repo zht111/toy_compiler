@@ -218,15 +218,11 @@ public class InstSelector {
             block.addInst(new Jp(blockMap.get(br.trueDest()), block));
         }
         else if (inst instanceof Call) {
-            //move first eight params into a0-a7
             Call ca = (Call) inst;
             for (int i = 0;i < Integer.min(8, ca.params().size());++i){
                 Reg reg = RegM2L(ca.params().get(i));
-                if (reg instanceof GReg) block.addInst(new La((GReg) reg, lRoot.getPhyReg(i + 10), block));
-                //actually no need since parameter cannot be global var
-                else block.addInst(new Mv(reg, lRoot.getPhyReg(i + 10), block));
+                block.addInst(new Mv(reg, lRoot.getPhyReg(i + 10), block));
             }
-            //store extra params
             int paramOff = 0;
             for (int i = 8;i < ca.params().size();++i) {
                 Operand param = ca.params().get(i);
@@ -235,7 +231,6 @@ public class InstSelector {
                 paramOff += 4;
             }
             if (paramOff > currentLFn.paramOffset) currentLFn.paramOffset = paramOff;
-            //add function call
             block.addInst(new Cal(lRoot, fnMap.get(ca.callee()), block));
             if (inst.dest() != null)
                 block.addInst(new Mv(lRoot.getPhyReg(10), RegM2L(inst.dest()), block));
@@ -349,7 +344,6 @@ public class InstSelector {
                 if (reg instanceof GReg) block.addInst(new La((GReg)reg, lRoot.getPhyReg(10), block));
                 else block.addInst(new Mv(reg, lRoot.getPhyReg(10), block));
             }
-            // block.addInst(new Ret(block));
         }
         else if (inst instanceof Store) {
             Operand value = ((Store) inst).value(), address = ((Store) inst).address();
@@ -386,20 +380,16 @@ public class InstSelector {
         cnt = 0;
         LIRBlock entryBlock = lFn.entryBlock(), exitBlock = lFn.exitBlock();
         ArrayList<VirtualReg> calleeSaveMap = new ArrayList<>();
-        //set new sp
         SLImm stackL = new SLImm(0);
         stackL.reverse = true;
         entryBlock.addInst(new IType(lRoot.getPhyReg(2), stackL, add, lRoot.getPhyReg(2), entryBlock));
-        //end set new sp, start store callee save
         lRoot.calleeSave().forEach(reg -> {
             VirtualReg map = new VirtualReg(4, cnt++);
             calleeSaveMap.add(map);
             entryBlock.addInst(new Mv(reg, map, entryBlock));
         });
-        //end store new callee save, start store ra
         VirtualReg map = new VirtualReg(4, cnt++);
         entryBlock.addInst(new Mv(lRoot.getPhyReg(1), map, entryBlock));
-        //end store ra, start move parameters to regs
         for (int i = 0;i < Integer.min(8, fn.params().size());++i) {
             entryBlock.addInst(new Mv(lRoot.getPhyReg(10 + i), lFn.params().get(i), entryBlock));
         }
@@ -432,7 +422,6 @@ public class InstSelector {
             fnMap.put(fn, func);
         });
         irRoot.functions().forEach((name, fn) -> {
-            //new LoopDetector(fn, false).runForFn();
             fn.blocks().forEach(block -> {
                 LIRBlock lBlock = new LIRBlock(block.loopDepth, "." + fn.name() + "_" + block.name());
                 blockMap.put(block, lBlock);

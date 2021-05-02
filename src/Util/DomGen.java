@@ -40,7 +40,7 @@ public class DomGen {
 
     private void DFSOrderGen(IRBlock entranceBlock) {
         tot = 0;
-        DFSIndex.add(null); //1-base DFS order here, so...
+        DFSIndex.add(null);
         DFS(entranceBlock);
         dfsFather.put(entranceBlock, null);
     }

@@ -9,7 +9,7 @@ import java.util.HashSet;
 
 public class lui extends RISCInst{
 
-    private Imm address;    //only used in store global->lui
+    private Imm address;
     public lui(Imm address, Reg dest, LIRBlock block) {
         super(dest, block);
         this.address = address;

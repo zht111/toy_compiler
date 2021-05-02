@@ -10,7 +10,6 @@ public class funCallExpr extends exprNode {
     private exprNode callee;
 
     public funCallExpr(exprNode callee, exprList params, position pos) {
-        //maybe a function call is able to be a left value, but it is undefined in this language now.
         super(pos, false);
         this.callee = callee;
         this.params = params == null ? new ArrayList<>() : params.params();

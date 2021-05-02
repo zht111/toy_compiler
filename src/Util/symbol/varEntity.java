@@ -6,8 +6,8 @@ import MIR.IRoperand.Operand;
 public class varEntity extends Entity {
 
     private Type type;
-    private boolean isGlobal, isMember;   //in some way similar with the one above, but used for IR
-    private Operand asOperand;  //if it is a member, is this able to be used as the offset?
+    private boolean isGlobal, isMember;
+    private Operand asOperand;
     private ConstInt index;
 
     public varEntity(String name, Type type, boolean isGlobal) {

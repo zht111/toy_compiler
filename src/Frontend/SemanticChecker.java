@@ -15,10 +15,6 @@ import Util.symbol.*;
 import java.util.ArrayList;
 import java.util.Stack;
 
-//principle: set new scope before visit its body;
-//(so check condition: {...;{};...})
-//principle: always visit a node before getting its type;
-//check type and variable principle
 public class SemanticChecker implements ASTVisitor {
 
     private semanticError binaryCalError(Type typeO, Type typeT,
@@ -88,7 +84,6 @@ public class SemanticChecker implements ASTVisitor {
         } else currentRetType = it.decl().returnType();
         currentFunction = it;
         haveReturn = false;
-        //parameters are already in the scope(in TypeFilter)
         currentScope = it.decl().scope();
         it.body().accept(this);
         currentScope = currentScope.parentScope();
@@ -114,7 +109,7 @@ public class SemanticChecker implements ASTVisitor {
         if (currentScope instanceof classScope) {
             theVar.setIsMember();
             theVar.setElementIndex(currentClass.setElement(theVar.type()));
-        }   //for IR use
+        }
         if (currentIRClass != null) {
             IRBaseType type = irRoot.getIRType(it.entity().type(), true);
             if (type instanceof ClassType) type = new Pointer(type, false);
@@ -146,7 +141,7 @@ public class SemanticChecker implements ASTVisitor {
                 stmt.accept(this);
                 currentScope = currentScope.parentScope();
             } else stmt.accept(this);
-        }); //cannot be null
+        });
     }
 
 
@@ -243,8 +238,6 @@ public class SemanticChecker implements ASTVisitor {
     }
 
     @Override public void visit(emptyStmt it) {}
-
-    //never visited
     @Override public void visit(exprList it) {}
     @Override public void visit(typeNode it) {}
 
@@ -314,7 +307,7 @@ public class SemanticChecker implements ASTVisitor {
             if (!it.src().type().isInt())
                 throw new semanticError("operator not match. Type: " +
                                         it.src().type().toString(), it.pos());
-            if (opCode.ordinal() > 2)   //++ or --
+            if (opCode.ordinal() > 2)
                 if (!it.src().isAssignable())
                     throw new semanticError("not a left value. ", it.src().pos());
             it.setType(gScope.getIntType());
@@ -353,7 +346,7 @@ public class SemanticChecker implements ASTVisitor {
             funcDecl func = (funcDecl)it.callee().type();
             ArrayList<varEntity> args = func.scope().params();
             ArrayList<exprNode> params = it.params();
-            params.forEach(param -> param.accept(this));   //cannot be null
+            params.forEach(param -> param.accept(this));
             if (params.size() != args.size())
                 throw new semanticError("", it.pos());
             for (int i = 0; i < args.size(); i++) {
@@ -405,7 +398,7 @@ public class SemanticChecker implements ASTVisitor {
             expr.accept(this);
             if (!expr.type().isInt())
                 throw new semanticError("not a int", expr.pos());
-        }); //cannot be null
+        });
         it.setType(gScope.generateType(it.typeN()));
     }
 

@@ -45,7 +45,6 @@ public class Root {
         Function getIntFunc = new Function("builtin_getInt");
         getIntFunc.setRetType(i32T);
         builtinFunctions.put("builtin_getInt", getIntFunc);
-        //above: has side effect(I/O)
         Function toStringFunc = new Function("builtin_toString");
         toStringFunc.setRetType(stringT);
         toStringFunc.addParam(new Param(i32T, "i"));

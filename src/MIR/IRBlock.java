@@ -43,7 +43,7 @@ public class IRBlock {
         return successors;
     }
 
-    public void addInst(Inst inst) {    //add inst in unterminated block
+    public void addInst(Inst inst) {
         if (headInst == null) headInst = tailInst = inst;
         else {
             tailInst.next = inst;
@@ -59,7 +59,7 @@ public class IRBlock {
             headInst = inst;
         }
     }
-    public void addInstTerminated(Inst inst) {  //add inst in terminated blocks
+    public void addInstTerminated(Inst inst) {
         Inst priorTail = tailInst.prior;
         if (priorTail == null) {
             headInst = inst;
@@ -124,12 +124,10 @@ public class IRBlock {
     }
 
     public void removeSuccessor(IRBlock successor) {
-        //this one also removes precursor, so public
         successor.removePrecursor(this);
         successors.remove(successor);
     }
     private void removePrecursor(IRBlock precursor) {
-        //this one does not remove successor, so private
         precursors.remove(precursor);
         phiInst().forEach((reg, phi) -> phi.removeBlock(precursor));
     }
@@ -195,7 +193,7 @@ public class IRBlock {
 
     public void mergeBlock(IRBlock merged) {
         assert !terminated;
-        assert merged.precursors().size() == 0; //so no phi
+        assert merged.precursors().size() == 0;
         successors.addAll(merged.successors());
         merged.successors().forEach(successor -> successor.replacePrecursor(merged, this));
         merged.phiInst().forEach((reg, phi) -> phi.setCurrentBlock(this));

@@ -36,9 +36,8 @@ public class TypeFilter implements ASTVisitor {
     public void visit(classDef it) {
         classType defClass = (classType)gScope.getType(it.Identifier(), it.pos());
         currentScope = defClass.scope();
-        // it.members().forEach(member -> member.accept(this));                    //cannot be null
-        it.methods().forEach(method -> method.accept(this));                //cannot be null
-        it.constructors().forEach(constructor-> constructor.accept(this));  //cannot be null
+        it.methods().forEach(method -> method.accept(this));
+        it.constructors().forEach(constructor-> constructor.accept(this));
         currentScope = currentScope.parentScope();
     }
 
@@ -53,7 +52,7 @@ public class TypeFilter implements ASTVisitor {
             func.setRetType(gScope.generateType(it.retValueType()));
         }
         currentScope = new functionScope(currentScope);
-        it.parameters().forEach(param -> param.accept(this));   //cannot be null
+        it.parameters().forEach(param -> param.accept(this));
         func.setScope((functionScope)currentScope);
         currentScope = currentScope.parentScope();
     }

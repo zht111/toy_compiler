@@ -132,7 +132,6 @@ public class IRBuilder implements ASTVisitor {
 		setBuiltinMethod("getString");
 		setBuiltinMethod("getInt");
 		setBuiltinMethod("toString");
-		//the IRTypes are already generated in frontEnd/SymbolCollector & frontEnd/SemanticChecker
 	}
 
 	@Override

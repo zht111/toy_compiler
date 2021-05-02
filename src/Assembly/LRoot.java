@@ -34,7 +34,7 @@ public class LRoot {
 		assignableRegs.addAll(callerSaveRegs);
 		assignableRegs.addAll(calleeSaveRegs);
 		assignableRegs.remove(0);
-		assignableRegs.add(phyRegs.get(1)); //let ra be the last to assign
+		assignableRegs.add(phyRegs.get(1));
 	}
 
 	public void addBuiltinFunction(LFn fn) {

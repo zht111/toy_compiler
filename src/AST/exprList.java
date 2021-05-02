@@ -4,7 +4,6 @@ import Util.position;
 
 import java.util.ArrayList;
 
-//the exprList appears only in funcCalls
 public class exprList extends ASTNode {
     private ArrayList<exprNode> params = new ArrayList<>();
 

@@ -8,7 +8,6 @@ public class assignExpr extends exprNode {
 
     public assignExpr(exprNode src1, exprNode src2, boolean assignable, position pos) {
         super(pos, assignable);
-        //the isAssignable of a=b is set manually later.
         this.src1 = src1;
         this.src2 = src2;
     }

@@ -14,11 +14,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-public class Alloc_{
+public class Memtoreg{
 
 	private Root irRoot;
 
-	public Alloc_(Root irRoot) {
+	public Memtoreg(Root irRoot) {
 		super();
 		this.irRoot = irRoot;
 	}

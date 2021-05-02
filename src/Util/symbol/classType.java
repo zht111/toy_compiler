@@ -9,7 +9,7 @@ public class classType extends BaseType {
 
     private int allocSize = 0;
     private Scope localScope;
-    private varEntity formalEntity; //used for this expr(provide it a entity)
+    private varEntity formalEntity;
     private ArrayList<Type> elementTypeList = new ArrayList<>();
 
     public classType(String name) {
@@ -42,7 +42,7 @@ public class classType extends BaseType {
     }
     @Override
     public int size() {
-        return 32;  //a pointer.
+        return 32; 
     }
     @Override
     public TypeCategory typeCategory(){

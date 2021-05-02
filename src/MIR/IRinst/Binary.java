@@ -10,7 +10,6 @@ import java.util.HashSet;
 public class Binary extends Inst {
     public enum BinaryOpCat {
         mul, sdiv, srem, shl, ashr, and, or, xor, sub, add
-        //*  /     %     <<   >>    &    |   ^    -    +
     }
     private BinaryOpCat opCode;
     private Operand src1, src2;

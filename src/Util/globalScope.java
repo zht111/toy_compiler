@@ -19,12 +19,10 @@ public class globalScope extends Scope {
     public globalScope(Scope parentScope) {
         super(parentScope);
         typeMap = new HashMap<>();
-        //now insert void, bool, int, string into the map;
         typeMap.put("int", intInstance);
         typeMap.put("bool", boolInstance);
         typeMap.put("void", voidInstance);
         typeMap.put("null", nullInstance);
-        //insert string into the map;
         classType stringType = new classType("string");
         stringType.addScope(new classScope(this));
         position pos = new position(0,0);
@@ -57,7 +55,6 @@ public class globalScope extends Scope {
         tmpFunc.setRetType(intInstance);
         stringType.defineMethod("ord", tmpFunc, pos);
         typeMap.put("string", stringType);
-        //insert print etc. into the map;
         tmpFunc = new funcDecl("print", null);
         tmpFunc.setScope(new functionScope(this));
         tmpFunc.addParam(new varEntity("str", stringType, false), pos);

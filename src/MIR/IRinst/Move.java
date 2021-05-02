@@ -12,7 +12,7 @@ import java.util.HashSet;
 public class Move extends Inst{
 
     private Operand origin;
-    public Move(Operand origin, Register dest, IRBlock block, boolean addUse) { //addUse is false for para copy
+    public Move(Operand origin, Register dest, IRBlock block, boolean addUse) {
         super(dest, block);
         this.origin = origin;
         if (addUse) origin.addUse(this);
